@@ -77,8 +77,8 @@ Scenario 3: User can collapse an event to hide details
 Given an event’s details are currently expanded
 When the user clicks on the "Hide details" button for the same event
 Then the event element should collapse and hide the event details
-Feature 3: Specify Number of Events
 
+Feature 3: Specify Number of Events
 Scenario 1: When user hasn’t specified a number, 32 events are shown by default
 Given the app has loaded a list of events
 When the user has not manually set a number of events to display
