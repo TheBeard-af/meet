@@ -9,7 +9,7 @@ module.exports = {
   moduleFileExtensions: ["js", "jsx"],
   setupFilesAfterEnv: ["<rootDir>/setupTests.js"], // Path to the setup file
 
-  collectCoverage: true,
+  collectCoverage: false,
   collectCoverageFrom: ["src/**/*.{js,jsx}", "!src/index.js", "!src/main.jsx"],
   coverageReporters: ["text", "lcov"],
 };

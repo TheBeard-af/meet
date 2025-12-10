@@ -1,10 +1,19 @@
-import React, { useState } from "react";
+import React from "react";
 
-const NumberOfEvents = () => {
-  const [eventCount, setEventCount] = useState("32");
-
+const NumberOfEvents = ({ currentNOE, setCurrentNOE }) => {
   const handleInputChanged = (event) => {
-    setEventCount(event.target.value);
+    const { value } = event.target;
+
+    if (value === "") {
+      setCurrentNOE(0);
+      return;
+    }
+    const cleaned = value.replace(/[^0-9]/g, "");
+    const numericValue = Number(cleaned);
+
+    if (!isNaN(numericValue)) {
+      setCurrentNOE(numericValue);
+    }
   };
 
   return (
@@ -14,8 +23,8 @@ const NumberOfEvents = () => {
         type="text"
         id="event-count"
         role="textbox"
-        value={eventCount}
-        onChange={(e) => setEventCount(e.target.value)}
+        value={currentNOE}
+        onChange={handleInputChanged}
       />
     </div>
   );
