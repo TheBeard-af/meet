@@ -1,6 +1,7 @@
+jest.setTimeout(30000); // 30 seconds
 import puppeteer from "puppeteer";
 
-describe.skip("show/hide event details", () => {
+describe("show/hide event details", () => {
   let browser;
   let page;
   beforeAll(async () => {
