@@ -12,4 +12,6 @@ module.exports = {
   collectCoverage: false,
   collectCoverageFrom: ["src/**/*.{js,jsx}", "!src/index.js", "!src/main.jsx"],
   coverageReporters: ["text", "lcov"],
+
+  maxWorkers: 1,
 };
