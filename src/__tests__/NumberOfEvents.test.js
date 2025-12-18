@@ -9,13 +9,23 @@ const TestWrapper = ({ initialValue = 32, onChange }) => {
     setVal(n);
     if (onChange) onChange(n);
   };
-  return <NumberOfEvents currentNOE={val} setCurrentNOE={handleChange} />;
+  return (
+    <NumberOfEvents
+      currentNOE={val}
+      setCurrentNOE={handleChange}
+      setErrorAlert={() => {}}
+    />
+  );
 };
 
 describe("<NumberOfEvents /> component", () => {
   test("renders textbox with default value of 32", () => {
     const { getByRole } = render(
-      <NumberOfEvents currentNOE={32} setCurrentNOE={() => {}} />
+      <NumberOfEvents
+        currentNOE={32}
+        setCurrentNOE={() => {}}
+        setErrorAlert={() => {}}
+      />
     );
     const textbox = getByRole("textbox");
     expect(textbox).toBeInTheDocument();

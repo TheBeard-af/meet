@@ -1,17 +1,20 @@
 import React from "react";
 
-const NumberOfEvents = ({ currentNOE, setCurrentNOE }) => {
+const NumberOfEvents = ({ currentNOE, setCurrentNOE, setErrorAlert }) => {
   const handleInputChanged = (event) => {
     const { value } = event.target;
 
     if (value === "") {
-      setCurrentNOE(0);
+      setCurrentNOE("Please enter a valid number of events");
       return;
     }
     const cleaned = value.replace(/[^0-9]/g, "");
     const numericValue = Number(cleaned);
 
-    if (!isNaN(numericValue)) {
+    if (isNaN(numericValue) || numericValue <= 0) {
+      setErrorAlert("Please enter a valid number of events");
+    } else {
+      setErrorAlert("");
       setCurrentNOE(numericValue);
     }
   };
