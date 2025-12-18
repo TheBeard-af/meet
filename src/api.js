@@ -1,4 +1,5 @@
 import mockData from "./mock-data";
+import NProgress from "nprogress";
 
 /**
  *
@@ -53,6 +54,7 @@ export const getEvents = async () => {
       return result.events;
     } else return null;
   }
+  return null;
 };
 
 export const getAccessToken = async () => {
