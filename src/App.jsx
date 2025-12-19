@@ -31,6 +31,9 @@ const App = () => {
 
   const fetchData = async () => {
     const allEvents = await getEvents();
+
+    console.log("ALL EVENTS (prod):", allEvents);
+
     const filteredEvents =
       currentCity === "See all cities"
         ? allEvents
