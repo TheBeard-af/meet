@@ -1,3 +1,4 @@
+/*
 @import url(https://fonts.googleapis.com/css?family=Roboto:500);
 .App {
   text-align: center;
@@ -93,4 +94,203 @@ input[type="number"] {
  left: 20px;
  width: 250px;
  z-index: 1000;
+}
+/*
+
+/* ===============================
+   Fonts
+================================ */
+@import url("https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600&family=Roboto:wght@400;500&display=swap");
+
+/* ===============================
+   Theme Variables (Sci‑Fi)
+================================ */
+:root {
+  --bg-main: #0b0f1a;
+  --bg-panel: rgba(255, 255, 255, 0.06);
+  --border-glow: rgba(0, 255, 255, 0.45);
+  --text-main: #e6f1ff;
+  --text-muted: #9fb3c8;
+  --accent: #00ffff;
+  --accent-alt: #7f5cff;
+}
+
+/* ===============================
+   Global Reset
+================================ */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #050814, #0b0f1a);
+  color: var(--text-main);
+  font-family: "Roboto", system-ui, sans-serif;
+}
+
+/* ===============================
+   App Container
+================================ */
+.App {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 20px;
+}
+
+/* ===============================
+   Headings
+================================ */
+h1 {
+  font-family: "Orbitron", sans-serif;
+  text-align: center;
+  letter-spacing: 2px;
+  margin-bottom: 30px;
+  color: var(--accent);
+}
+
+/* ===============================
+   Typography
+================================ */
+p {
+  margin: 6px 0;
+  color: var(--text-muted);
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* ===============================
+   Inputs (Readable + Modern)
+================================ */
+input[type="text"],
+input[type="number"] {
+  width: 250px;
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--text-main);
+  border: 1px solid var(--border-glow);
+  border-radius: 6px;
+  padding: 10px 12px;
+  font-size: 14px;
+  outline: none;
+  height: 40px;
+  margin-bottom: 20px;
+  backdrop-filter: blur(6px);
+  transition: all 0.25s ease;
+}
+
+input::placeholder {
+  color: var(--text-muted);
+}
+
+input:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 10px var(--border-glow);
+}
+
+/* ===============================
+   City Search
+================================ */
+#city-search {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+}
+
+.city {
+  width: 250px;
+}
+
+/* ===============================
+   Suggestions Dropdown
+================================ */
+.suggestions {
+  width: 250px;
+  position: absolute;
+  top: 45px;
+  z-index: 2;
+  background: var(--bg-panel);
+  border: 1px solid var(--border-glow);
+  backdrop-filter: blur(10px);
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.suggestions > li {
+  padding: 10px 12px;
+  cursor: pointer;
+  color: var(--text-main);
+}
+
+.suggestions > li:hover {
+  background: rgba(0, 255, 255, 0.15);
+}
+
+/* ===============================
+   Event Cards
+================================ */
+.event {
+  background: var(--bg-panel);
+  border: 1px solid var(--border-glow);
+  border-radius: 10px;
+  padding: 16px;
+  margin-bottom: 16px;
+  position: relative;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 0 20px rgba(0, 255, 255, 0.06);
+}
+
+/* ===============================
+   Buttons
+================================ */
+button,
+.details-btn {
+  background: linear-gradient(135deg, var(--accent), var(--accent-alt));
+  color: #000;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 20px;
+  font-family: "Orbitron", sans-serif;
+  font-size: 12px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+button:hover,
+.details-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 0 12px var(--accent);
+}
+
+/* ===============================
+   Alerts
+================================ */
+.alerts-container {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  width: 280px;
+  z-index: 1000;
+}
+
+/* ===============================
+   Charts Layout
+================================ */
+.charts-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  margin-bottom: 30px;
+}
+
+@media (max-width: 768px) {
+  .charts-container {
+    grid-template-columns: 1fr;
+  }
 }
