@@ -19,15 +19,18 @@ const CityEventsChart = ({ allLocations, events }) => {
   }, [`${events}`, `${allLocations}`]);
 
   const getData = () => {
-    const data = allLocations.map((location) => {
+    return allLocations.map((location) => {
       const count = events.filter(
         (event) => event.location === location
       ).length;
       const city = location.split(/, | - /)[0];
       return { city, count };
     });
-    return data;
   };
+
+  if (!allLocations.length || !events.length) {
+    return null;
+  }
 
   return (
     <ResponsiveContainer width="99%" height={400}>
