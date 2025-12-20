@@ -1,9 +1,11 @@
-import React, { useState, useEffect } from "react";
+// src/components/CitySearch.jsx
+import React, { useState, useEffect, useRef } from "react";
 
 const CitySearch = ({ allLocations, setCurrentCity, setInfoAlert }) => {
   const [showSuggestions, setShowSuggestions] = useState(false);
   const [query, setQuery] = useState("");
   const [suggestions, setSuggestions] = useState([]);
+  const containerRef = useRef(null);
 
   const handleInputChanged = (event) => {
     const value = event.target.value;
@@ -15,6 +17,7 @@ const CitySearch = ({ allLocations, setCurrentCity, setInfoAlert }) => {
 
     setQuery(value);
     setSuggestions(filteredLocations);
+    setShowSuggestions(true);
 
     let infoText;
     if (filteredLocations.length === 0) {
@@ -26,8 +29,16 @@ const CitySearch = ({ allLocations, setCurrentCity, setInfoAlert }) => {
     setInfoAlert(infoText);
   };
 
-  const handleItemClicked = (event) => {
-    const value = event.target.textContent;
+  const handleSeeAllCities = () => {
+    setQuery("");
+    setCurrentCity("See all cities");
+    setSuggestions(allLocations);
+    setShowSuggestions(false);
+    setInfoAlert("");
+  };
+
+  const handleItemClicked = (value) => {
+    //const value = event.target.textContent;
     setQuery(value);
     setShowSuggestions(false); // to hide the list
     setCurrentCity(value);
@@ -38,8 +49,22 @@ const CitySearch = ({ allLocations, setCurrentCity, setInfoAlert }) => {
     setSuggestions(allLocations);
   }, [`${allLocations}`]);
 
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (
+        containerRef.current &&
+        !containerRef.current.contains(event.target)
+      ) {
+        setShowSuggestions(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
+
   return (
-    <div id="city-search">
+    <div id="city-search" ref={containerRef}>
       <input
         type="text"
         className="city"
@@ -52,12 +77,15 @@ const CitySearch = ({ allLocations, setCurrentCity, setInfoAlert }) => {
         <ul className="suggestions">
           {suggestions.map((suggestion) => {
             return (
-              <li onClick={handleItemClicked} key={suggestion}>
+              <li
+                onClick={() => handleItemClicked(suggestion)}
+                key={suggestion}
+              >
                 {suggestion}
               </li>
             );
           })}
-          <li key="See all cities">
+          <li onClick={handleSeeAllCities}>
             <b>See all cities</b>
           </li>
         </ul>
